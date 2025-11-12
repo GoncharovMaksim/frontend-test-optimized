@@ -11,10 +11,13 @@ const animConfig = getAnimationConfig();
 
 /**
  * Optimized transition with reduced motion support
+ * Uses transform3d for GPU acceleration on mobile
  */
 export const optimizedTransition: Transition = {
   duration: animConfig.duration,
   ease: "easeOut",
+  // Force GPU acceleration on mobile
+  type: "tween",
 };
 
 /**
@@ -46,6 +49,7 @@ export const fadeIn: Variants = {
 
 /**
  * Fade in up animation variant
+ * Uses y transform for GPU acceleration (motion/react handles transform3d automatically)
  */
 export const fadeInUp: Variants = {
   hidden: animConfig.shouldAnimate
@@ -131,16 +135,24 @@ export const staggerContainer: Variants = {
 /**
  * Optimized hover scale animation
  * Only applies scale if complex animations are enabled
+ * Motion/react handles GPU acceleration automatically
  */
 export const hoverScale = animConfig.complexAnimations
-  ? { scale: 1.05, transition: fastTransition }
+  ? { 
+      scale: 1.05, 
+      transition: fastTransition 
+    }
   : {};
 
 /**
  * Optimized tap scale animation
+ * Motion/react handles GPU acceleration automatically
  */
 export const tapScale = animConfig.shouldAnimate
-  ? { scale: 0.95, transition: fastTransition }
+  ? { 
+      scale: 0.95, 
+      transition: fastTransition 
+    }
   : {};
 
 /**

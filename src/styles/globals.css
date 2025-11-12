@@ -297,6 +297,8 @@ body {
 /* GPU acceleration for animations */
 .will-change-transform {
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .will-change-opacity {
@@ -306,6 +308,28 @@ body {
 /* Reset will-change after animation */
 .motion-safe {
   will-change: auto;
+  transform: none;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .animate-float {
+    animation-duration: 8s;
+  }
+  
+  .animate-marquee {
+    animation-duration: 40s;
+  }
+  
+  /* Disable backdrop-filter on low-end devices */
+  @supports not (backdrop-filter: blur(10px)) {
+    .backdrop-blur-sm,
+    .backdrop-blur-md,
+    .backdrop-blur-xl {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
 }
 
 /* Optimize backdrop-filter on mobile */

@@ -104,7 +104,7 @@ export function Hero() {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-10 py-4 bg-accent text-accent-foreground rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(99,102,241,0.6)] flex items-center gap-3 overflow-hidden text-lg font-semibold"
+              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-accent text-accent-foreground rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(99,102,241,0.6)] flex items-center gap-2 sm:gap-3 overflow-hidden text-base sm:text-lg font-semibold w-full sm:w-auto"
             >
               <ArrowRight className="w-5 h-5 relative z-10" />
               <span className="relative z-10">Оставить заявку</span>
@@ -131,7 +131,7 @@ export function Hero() {
               onClick={() => trackButtonClick("Telegram", "hero")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group px-10 py-4 border-2 border-accent/50 bg-background/50 backdrop-blur-sm text-foreground rounded-full transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] flex items-center gap-3 text-lg font-semibold"
+              className="group px-6 sm:px-8 md:px-10 py-3 sm:py-4 border-2 border-accent/50 bg-background/50 backdrop-blur-sm text-foreground rounded-full transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-semibold w-full sm:w-auto justify-center"
             >
               <MessageSquare className="w-5 h-5" />
               Написать в Telegram

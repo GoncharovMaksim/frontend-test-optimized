@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { AdaptivePortfolioImage } from "./figma/AdaptivePortfolioImage";
 import { useState } from "react";
 
 export type Project = {
@@ -983,31 +984,50 @@ export function Portfolio({ category, onBack, onProjectClick }: PortfolioProps) 
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                type: "tween",
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                y: -8,
+                transition: { duration: 0.3, type: "tween" }
+              }}
               onClick={() => onProjectClick(category, index)}
-              className="group rounded-2xl border border-border bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 overflow-hidden cursor-pointer"
+              className="group rounded-2xl border border-border bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform"
             >
               {/* Image */}
-              <div className="relative h-64 overflow-hidden bg-secondary/20">
-                <ImageWithFallback
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60" />
+              <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden bg-secondary/20 rounded-t-2xl">
+                {project.image === "/portfolio-default.png" ? (
+                  <AdaptivePortfolioImage
+                    src={project.image}
+                    alt={project.title}
+                    isCard={true}
+                    className="group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <>
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60" />
+                  </>
+                )}
               </div>
 
               {/* Content */}
-              <div className="p-8">
+              <div className="p-4 sm:p-6 md:p-8">
                 <div className="flex items-start justify-between mb-4">
-                  <h3 style={{ fontSize: '1.5rem' }} className="text-foreground flex-1">
+                  <h3 className="text-lg sm:text-xl md:text-[1.5rem] text-foreground flex-1">
                     {project.title}
                   </h3>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0 ml-3" />
                 </div>
 
-                <p className="text-muted-foreground mb-4">
+                <p className="text-sm sm:text-base text-muted-foreground mb-4">
                   {project.description}
                 </p>
 

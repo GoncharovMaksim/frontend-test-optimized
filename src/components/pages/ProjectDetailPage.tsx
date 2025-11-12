@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft, Calendar, Users, Target, CheckCircle, ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { AdaptivePortfolioImage } from "../figma/AdaptivePortfolioImage";
 import { useEffect } from "react";
 import { trackProjectView, trackOutboundLink } from "../../utils/analytics";
 
@@ -73,11 +74,11 @@ export function ProjectDetailPage({ project, onBack, onNavigate }: ProjectDetail
             ))}
           </div>
 
-          <h1 style={{ fontSize: '3.5rem', lineHeight: '1.1', letterSpacing: '-0.02em' }} className="text-foreground mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[3.5rem] leading-tight tracking-tight text-foreground mb-6">
             {project.title}
           </h1>
           
-          <p className="text-muted-foreground max-w-3xl" style={{ fontSize: '1.25rem' }}>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl">
             {project.description}
           </p>
         </motion.div>
@@ -87,13 +88,22 @@ export function ProjectDetailPage({ project, onBack, onNavigate }: ProjectDetail
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-16 rounded-2xl overflow-hidden border border-border"
+          className="mb-16"
         >
-          <ImageWithFallback
-            src={project.image}
-            alt={project.title}
-            className="w-full h-[500px] object-cover"
-          />
+          {project.image === "/portfolio-default.png" ? (
+            <AdaptivePortfolioImage
+              src={project.image}
+              alt={project.title}
+            />
+          ) : (
+            <div className="rounded-2xl overflow-hidden border border-border">
+              <ImageWithFallback
+                src={project.image}
+                alt={project.title}
+                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+              />
+            </div>
+          )}
         </motion.div>
 
         {/* Website Link Banner */}
@@ -290,32 +300,32 @@ export function ProjectDetailPage({ project, onBack, onNavigate }: ProjectDetail
               {/* Right fade gradient */}
               <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
               
-              <div className="flex gap-6 animate-marquee">
+              <div className="flex gap-4 sm:gap-6 animate-marquee">
                 {/* First set */}
                 {project.outcomes.map((outcome, index) => (
                   <div
                     key={`first-${index}`}
-                    className="flex-shrink-0 p-6 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm flex items-center justify-center min-h-[120px] min-w-[320px]"
+                    className="flex-shrink-0 p-4 sm:p-6 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm flex items-center justify-center min-h-[100px] sm:min-h-[120px] min-w-[280px] sm:min-w-[320px]"
                   >
-                    <p className="text-foreground text-center" style={{ fontSize: '1.125rem' }}>{outcome}</p>
+                    <p className="text-foreground text-center text-sm sm:text-lg">{outcome}</p>
                   </div>
                 ))}
                 {/* Duplicate set for seamless loop */}
                 {project.outcomes.map((outcome, index) => (
                   <div
                     key={`second-${index}`}
-                    className="flex-shrink-0 p-6 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm flex items-center justify-center min-h-[120px] min-w-[320px]"
+                    className="flex-shrink-0 p-4 sm:p-6 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm flex items-center justify-center min-h-[100px] sm:min-h-[120px] min-w-[280px] sm:min-w-[320px]"
                   >
-                    <p className="text-foreground text-center" style={{ fontSize: '1.125rem' }}>{outcome}</p>
+                    <p className="text-foreground text-center text-sm sm:text-lg">{outcome}</p>
                   </div>
                 ))}
                 {/* Third set for extra smoothness */}
                 {project.outcomes.map((outcome, index) => (
                   <div
                     key={`third-${index}`}
-                    className="flex-shrink-0 p-6 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm flex items-center justify-center min-h-[120px] min-w-[320px]"
+                    className="flex-shrink-0 p-4 sm:p-6 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm flex items-center justify-center min-h-[100px] sm:min-h-[120px] min-w-[280px] sm:min-w-[320px]"
                   >
-                    <p className="text-foreground text-center" style={{ fontSize: '1.125rem' }}>{outcome}</p>
+                    <p className="text-foreground text-center text-sm sm:text-lg">{outcome}</p>
                   </div>
                 ))}
               </div>

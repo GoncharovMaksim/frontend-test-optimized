@@ -178,11 +178,11 @@ export function PortfolioPage({ onCategoryClick, onNavigate }: PortfolioCategory
                   </div>
 
                   {/* Category Content */}
-                  <div className="p-8">
-                    <h3 style={{ fontSize: "1.75rem" }} className="text-foreground mb-3">
+                  <div className="p-4 sm:p-6 md:p-8">
+                    <h3 className="text-xl sm:text-2xl md:text-[1.75rem] text-foreground mb-3">
                       {category.title}
                     </h3>
-                    <p className="text-muted-foreground mb-6">{category.description}</p>
+                    <p className="text-sm sm:text-base text-muted-foreground mb-6">{category.description}</p>
 
                     {/* Subcategories */}
                     <div className="space-y-2 mb-6">
